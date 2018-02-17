@@ -1,0 +1,13 @@
+[info] TreeTests:
+[info] - a single leaf tree has just one leaf
+[info] - a one-level tree has two leaves
+[info] - a more complex tree has the correct number of leaves
+[info] - a single leaf tree has just that leaf
+[info] - a one-level tree has its two leaves
+[info] - a more complex tree has the correct leaves
+[info] - the sum of a single leaf tree is the value of the leaf
+[info] - the sum of a a one-level tree is the sum of the two leaves
+[info] - the sum of a mutli-level tree is the sum of its leaves
+[info] - the incandswap of a leaf tree is just the leaf tree incremented
+[info] - the incandswap of a one-level tree is inc and swap of those leaves
+[info] - the incandswap of a mutli-level tree is as expectResulted

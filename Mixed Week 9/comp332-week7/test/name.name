@@ -1,0 +1,6 @@
+3.7: b is declared more than once
+7.5: c is not variable, so cannot be set
+11.11: initialising expression is not constant
+14.6: f is declared more than once
+16.5: g is not declared
+18.9: i is not declared

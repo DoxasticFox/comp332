@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1in,
+	left=1in,
+	right=1in
+]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{MnSymbol}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\title{Mixed Week 7}
+	\author{Christian Nassif-Haynes}
+	\maketitle
+	
+	\section*{Tutorial}
+	\begin{enumerate}
+		\item Identifiers are listed in order of their appearance in the source. Subscripts have been used to distinguish between different variables of the same name:
+		\begin{itemize}
+			\item Line 1 -- \verb=foo=, defining; \verb=input=, defining; \verb=output=, defining.
+			\item Line 3 -- \verb=a=$_1$, defining; \verb=array=, applied.
+			\item Line 5 -- \verb=b=$_1$, defining; \verb=a=$_1$ applied.
+			\item Line 7 -- \verb=bar=, defining; \verb=a=$_2$, defining; \verb=integer=, applied.
+			\item Line 9 -- \verb=b=$_2$, defining; \verb=boolean=, applied.
+			\item Line 11 -- \verb=a=$_2$, applied; \verb=d=, \textit{unknown} (never defined).
+			\item Line 12 -- \verb=b=$_2$, defining.
+			\item Line 15 -- \verb=bletch=, defining; \verb=b=$_3$, defining; \verb=boolean=, applied; \verb=c=, defining; \verb=real=, applied; \verb=integer=, applied.
+			\item Line 17 -- \verb=blerk=, defining.
+			\item Line 19 -- \verb=a=$_3$, defining; \verb=false=, applied.
+			\item Line 21 -- \verb=b=$_3$, applied; \verb=a=$_3$, applied.
+			\item Line 25 -- \verb=blerk=, applied.
+			\item Line 26 -- \verb=b=$_3$, applied.
+			\item Line 27 -- \verb=bletch= applied; \verb=trunc= applied; \verb=c=, applied.
+			\item Line 29 -- \verb=bletch= applied.
+			\item Line 33 -- \verb=b=$_1$, applied.
+			\item Line 34 -- \verb=bar=, applied; \verb=b=$_1$, applied; \verb=a=$_1$, applied.
+			\item Line 35 -- \verb=b=$_1$, applied; \verb=bletch=, applied; \verb=true=, applied; \verb=false=, applied.
+			\item Line 36 -- \verb=writeln=, applied; \verb=b=$_1$, applied.
+		\end{itemize}
+		
+		\item 3. The same subscripts have been used as in the previous question:
+		
+		\begin{center}
+			\begin{tabular}{| l | l |p{8.61405cm}|}
+				\hline
+				\textbf{Scope} & \textbf{Line(s)} & \textbf{Environment} \\ \hline
+				Global & 1-37 & \textit{predefined identifiers} (\verb=array=, \verb=true=, etc.) \\ \hline
+				\quad Program (\verb=foo=) & 1-37 & \verb=a=$_1$ (type~:~array[integer]), \verb=b=$_1$ (var~:~boolean), \verb=bar= (proc), \verb=bletch= (func~:~integer), \textit{predefined identifiers} \\ \hline
+				\quad \quad Procedure (\verb=bar=) & 7-13 & \verb=a=$_2$ (pointer~:~integer), \verb=b=$_2$ (var~:~boolean), \verb=bar= (proc), \verb=bletch= (func~:~integer), \textit{predefined identifiers} \\ \hline
+				\quad \quad Function (\verb=bletch=) & 15-30 & \verb=b=$_3$ (var~:~boolean), \verb=c= (var~:~real), \verb=blerk= (proc), \verb=a=$_1$ (type~:~array[integer]), \verb=bar= (proc), \verb=bletch= (func~:~integer), \textit{predefined identifiers} \\ \hline
+				\quad \quad \quad Procedure (\verb=blerk=) & 17-22 & \verb=a=$_3$ (const~:~boolean), \verb=b=$_3$ (var~:~boolean), \verb=c= (var~:~real), \verb=blerk= (proc), \verb=bar= (proc), \verb=bletch= (func~:~integer), \textit{predefined identifiers} \\ \hline
+				\textit{Unknown} & & \verb=d= (unknown) \\ \hline
+			\end{tabular}
+		\end{center}
+		
+%		\begin{itemize}
+%			\item \verb=foo= -- Global scope; lines 1-37; environment is \textit{predefined identifiers} (\verb=array=, \verb=true=, etc.)
+%			\item \verb=input= -- Procedure scope (\verb=foo=); lines 1-37; environment is \verb=a=$_1$, \verb=b=$_1$, \verb=bar=, \verb=bletch=.
+%			\item \verb=output= -- Procedure scope (\verb=foo=); lines 1-37; environment is \verb=a=$_1$, \verb=b=$_1$, \verb=bar=, \verb=bletch=.
+%			\item \verb=a=$_1$ -- Procedure scope (\verb=foo=); lines 1-37; environment is \verb=a=$_1$, \verb=b=$_1$, \verb=bar=, \verb=bletch=.
+%			\item \verb=array= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=b=$_1$ -- Procedure scope (\verb=foo=); lines 1-37; environment is \verb=a=$_1$, \verb=b=$_1$, \verb=bar=, \verb=bletch=.
+%			\item \verb=bar= -- Procedure scope (\verb=foo=); lines 1-37; environment is \verb=a=$_1$, \verb=b=$_1$, \verb=bar=, \verb=bletch=.
+%			\item \verb=a=$_2$ -- Procedure scope (\verb=bar=); lines 7-13; environment is \verb=a=$_2$, \verb=d=, \verb=b=$_2$.
+%			\item \verb=integer= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=b=$_2$ -- Procedure scope (\verb=bar=); lines 7-13; environment is \verb=a=$_2$, \verb=d=, \verb=b=$_2$.
+%			\item \verb=boolean= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=d= -- \textit{Unknown scope} (never defined).
+%			\item \verb=bletch= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=b=$_3$ -- Function scope (\verb=bletch=); lines 15-30; environment is \verb=b=$_3$, \verb=c=, \verb=blerk=.
+%			\item \verb=c= -- Function scope (\verb=bletch=); lines 15-30; environment is \verb=b=$_3$, \verb=c=, \verb=blerk=.
+%			\item \verb=real= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=blerk= -- Function scope (\verb=bletch=); lines 15-30; environment is \verb=b=$_3$, \verb=c=, \verb=blerk=.
+%			\item \verb=a=$_3$ -- Procedure scope (\verb=blerk=); lines 17-22; environment is \verb=a=$_3$.
+%			\item \verb=false= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=trunc= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=true= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%			\item \verb=writeln= -- Global scope; lines 1-37; environment is \textit{predefined identifiers}.
+%		\end{itemize}
+	\end{enumerate}
+	
+	\section*{Practical}
+	Not attempted. Didn't even read the question. I'm going to bed. $Z^{Z^{Z^{\null^\udots}}}$
+\end{document}

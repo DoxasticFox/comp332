@@ -1,0 +1,32 @@
+run
+test
+test-only *ExecTests
+exit
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+last test:test-only
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+run test/tests.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+run test/input.func332
+test-only *ExecTests
+clean
+exit

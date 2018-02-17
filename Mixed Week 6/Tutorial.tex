@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1.75in,
+	left=1.25in,
+	right=1.25in
+]{geometry}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{pdfpages}
+\usepackage{amssymb}
+\usepackage{qtree}
+\newcommand\qlabelhook{\it}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\def\sizeablebox[#1,#2,#3]{
+		\hbox to #2 {\framebox[#1]{#3}}%
+	}
+\def\qframesubtree{\setbox\treeboxone \hbox{\framebox[1\width]{\box\treeboxone}}}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\title{Mixed Week 5}
+	\author{Christian Nassif-Haynes}
+	\maketitle
+	
+	\section*{Tutorial}
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item In the third rule of the attribute grammar below, subscripts have been used to distinguish between occurrences of like nonterminals.
+		\begin{align*}
+			E &\rightarrow N && [E.ones = N.ones] \\
+			N &\rightarrow B && [N.ones = B.ones] \\
+			N_1 &\rightarrow N_2 \ B && [N_1.ones = N_2.ones + B.ones] \\
+			B &\rightarrow \textbf{0} && [B.ones = 0] \\
+			B &\rightarrow \textbf{1} && [B.ones = 1]\\
+		\end{align*}
+		\item Note that $13_{10} = 1101_2$.
+		
+		\Tree [.{E.ones = 3}
+				[.{N.ones = 3}
+					[.{N.ones = 2}
+						[.{N.ones = 2}
+							[.{N.ones = 1}
+								[.{B.ones = 1}
+									[ 1 ]]]
+							[.{B.ones = 1}
+								[ 1 ]]]
+						[.{B.ones = 0}
+							[ 0 ]]]
+					[.{B.ones = 1}
+						[ 1 ]]]]
+	\end{enumerate}
+\end{document}

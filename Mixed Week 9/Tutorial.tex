@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1in,
+	left=1in,
+	right=1in
+]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{MnSymbol}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\title{Mixed Week 9}
+	\author{Christian Nassif-Haynes}
+	\maketitle
+	
+	\section*{Tutorial}
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item Compilation can by done by first assigning each variable a memory address:
+		\begin{verbatim}
+0xC0 <- 1;
+0xC1 <- 100;
+while (*0xC0) {
+   0xC1 <- *0xC1 - 1
+   if (0xC1 == 0)
+       *0xC0 = 0;
+}
+		\end{verbatim}
+		The code then can be rewritten in assembly:
+		\begin{verbatim}
+    lvalue      0xC0              ; int a = 1;
+    push        1
+    assign
+    lvalue      0xC1              ; int b = 100;
+    push        100
+    assign
+while_cond_000                    ; while loop
+    rvalue      0xC0
+    gofalse     while_end_000
+while_start_000
+    lvalue      0xC1              ; b-- is equivalent to b = b - 1
+    rvalue      0xC1              ;     Evaluating b - 1...
+    push        1                 ;     Evaluating b - 1...
+    sub                           ;     Evaluating b - 1...
+    assign
+if_cond_000
+    rvalue      0xC1              ; b == 0
+    gofalse     if_end_000
+if_start_000
+    lvalue      0xC0              ; a = 0
+    push        0
+    assign
+if_end_000
+    goto        while_cond_000
+while_end_000
+		\end{verbatim}
+		Labels for subsequent while loops and if statements should be numbered  (e.g. \verb=while_cond_001=).
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,4 @@
+[debug] Running Test func332.ParsingTests : subclass(false, org.scalatest.Suite) with arguments 
+[info] Passed: : Total 52, Failed 0, Errors 0, Passed 52, Skipped 0
+[debug] Passed tests:
+[debug] 	func332.ParsingTests

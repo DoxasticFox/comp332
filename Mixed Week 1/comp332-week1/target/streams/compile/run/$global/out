@@ -1,0 +1,11 @@
+[info] Running Main 0
+[debug] Starting sandboxed run...
+[debug] Waiting for threads to exit or System.exit to be called.
+[debug]   Classpath:
+[debug] 	C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\comp332-week1\target\scala-2.10\classes
+[debug] 	C:\Users\Christian\.sbt\boot\scala-2.10.2\lib\scala-library.jar
+[debug] Waiting for thread run-main to exit
+[debug] 	Thread run-main exited.
+[debug] Interrupting remaining threads (should be all daemons).
+[debug] Sandboxed run complete..
+[debug] Exited with code 0

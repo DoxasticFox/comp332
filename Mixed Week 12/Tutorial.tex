@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1in,
+	left=1in,
+	right=1in
+]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{MnSymbol}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\title{Mixed Week 12}
+	\author{Christian Nassif-Haynes}
+	\maketitle
+	
+	\section*{Tutorial Exercises}
+	\begin{enumerate}
+		\item
+		\begin{enumerate}
+			\item Domain-Specific Languages (DSLs) are typically more succinct. Because they describe a single domain, fewer and more specific language constructs are needed.
+			\item DSLs allow solutions to be expressed at a level of abstraction most appropriate to the task at hand.
+		\end{enumerate}
+		\item
+		\begin{enumerate}
+			\item In principle, an arbitrary number of domains could be conceived. It is impractical to design a DSL for all of them. Even if domains were defined sensibly, designing and implementing a language takes time and money. The pro's and con's should be evaluated on a case-by-base (or domain-by-domain) basis.
+			\item It is impractical for employees to constantly learn new languages and undesirable for employers to pay for labour involving an esoteric skill.
+		\end{enumerate}
+		\item Internal DSLs are implemented within an existing programming language. They may add domain-specific elements such as datatypes, functions and so on. On the other hand, external DSLs are languages in their own right. Examples include \LaTeX , MATLAB and SQL.
+		
+		Things to consider when deciding between external and internal DSLs include:
+		\begin{itemize}
+			\item How closely the syntax of the language needs to follow that used by domain experts.
+			\item How important it is for errors messages to be relevant to the domain.
+			\item Whether or not domain-specific optimisations and validation must be applied.
+			\item Whether or not the resources (e.g. time and money) are available for designing and implementing the language externally.
+		\end{itemize}
+		\item Using a DSL to implement a func332 has been useful. Writing a compiler for func332 in a general-purpose programming language (GPL) is a large task, considering every stage involved in compilation. As well, the code written in Kiama was more idiomatic than could be expected of code written in a GPL.
+		
+		An interesting feature of Kiama were the operators used during syntactic analysis (\verb=^^=, \verb=<~=, etc). They had the advantage of giving the programmer more power over the way in which the language is parsed. However, the syntax is not as conventional (that is, well-known) as, say, extended Backus--Naur form.
+		
+		The feature of Scala which makes it particularly well-suited to implementing a library like Kiama is pattern matching, which was useful during syntactic analysis when matching syntactic constituents.
+	\end{enumerate}
+\end{document}

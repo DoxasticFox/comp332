@@ -1,0 +1,9 @@
+5.9: type error: expected integer got string
+7.9: type error: expected integer got string
+8.9: x is not declared
+10.9: type error: expected string got integer
+11.9: type error: expected string got integer
+12.9: type error: expected string got integer
+16.21: type error: expected integer got string
+18.20: type error: expected string got integer
+19.21: y is not declared

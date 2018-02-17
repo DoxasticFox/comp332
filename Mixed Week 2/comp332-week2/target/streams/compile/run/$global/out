@@ -1,0 +1,16 @@
+[info] Running exp.Main test/input.exp
+[debug] Starting sandboxed run...
+[debug] Waiting for threads to exit or System.exit to be called.
+[debug] Waiting for thread run-main to exit
+[debug]   Classpath:
+[debug] 	C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 2\comp332-week2\target\scala-2.10\classes
+[debug] 	C:\Users\Christian\.sbt\boot\scala-2.10.2\lib\scala-library.jar
+[debug] 	C:\Users\Christian\.ivy2\cache\com.googlecode.kiama\kiama_2.10\jars\kiama_2.10-1.5.0.jar
+[debug] 	C:\Users\Christian\.ivy2\cache\org.bitbucket.inkytonik.dsinfo\dsinfo_2.10\jars\dsinfo_2.10-0.2.0.jar
+[debug] 	C:\Users\Christian\.ivy2\cache\org.scala-lang\scala-reflect\jars\scala-reflect-2.10.1.jar
+[debug] 	C:\Users\Christian\.ivy2\cache\org.bitbucket.inkytonik.dsprofile\dsprofile_2.10\jars\dsprofile_2.10-0.2.0.jar
+[debug] 	C:\Users\Christian\.ivy2\cache\jline\jline\jars\jline-1.0.jar
+[debug] 	Thread run-main exited.
+[debug] Interrupting remaining threads (should be all daemons).
+[debug] Sandboxed run complete..
+[debug] Exited with code 0

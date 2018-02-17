@@ -1,0 +1,4 @@
+[debug] Running Test exp.ParsingTests : subclass(false, org.scalatest.Suite) with arguments 
+[info] Passed: : Total 17, Failed 0, Errors 0, Passed 17, Skipped 0
+[debug] Passed tests:
+[debug] 	exp.ParsingTests

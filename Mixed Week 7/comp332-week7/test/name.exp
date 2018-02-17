@@ -1,0 +1,18 @@
+decl b
+set b = 10
+const b = 3
+const a = b
+
+const c = 10
+set c = 11
+
+decl d
+set d = 1
+const e = d + 4
+
+decl f
+decl f
+
+set g = 1
+decl h
+set h = i

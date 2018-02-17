@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1.75in,
+	left=1.25in,
+	right=1.25in
+]{geometry}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{pdfpages}
+\usepackage{amssymb}
+\usepackage{qtree}
+\newcommand\qlabelhook{\it}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\def\sizeablebox[#1,#2,#3]{
+		\hbox to #2 {\framebox[#1]{#3}}%
+	}
+\def\qframesubtree{\setbox\treeboxone \hbox{\framebox[1\width]{\box\treeboxone}}}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\title{Workshop Week 4}
+	\author{Christian Nassif-Haynes}
+	\maketitle
+
+	\begin{enumerate}
+		\item The starting symbol of the below grammar is $Expr$. Perl-style regular expressions are used to describe some terminals and are enclosed in forward slashes.
+		\begin{align}
+			Expr			&\rightarrow ExprRightMid \;\;|\;\; ExprRightMid \;\; Op3 \;\; ExprRightMid \\
+			ExprRightMid	&\rightarrow ExprLeftHi \;\;|\;\; ExprLeftHi \;\; Op2 \;\; ExprRightMid \\
+			ExprLeftHi		&\rightarrow Oprand \;\;|\;\; ExprLeftHi \;\; Op1 \;\; Oprand  \\
+			Oprand			&\rightarrow Int \;\;|\;\; Ident \;\;|\;\; \text{\bf ( } ExprRightMid \text{ \bf ) } \\
+			Op1				&\rightarrow \text{\bf ?} \\
+			Op2				&\rightarrow \text{\bf !} \;\;|\;\; \text{\bf \^\null} \\
+			Op3				&\rightarrow \text{\bf @} \\
+			Int				&\rightarrow \text{\bf/{[}0-9{]}+/} \\
+			Ident			&\rightarrow \text{\bf/{[}a-zA-Z{]}+/}
+		\end{align}
+		\item The left recursive productions are used to allow for left associativity.
+		\item The derivation of \verb|(a ^ 2) ? b| is as follows:
+		\begin{align*}
+			Expr &\rightarrow ExprRightMid & \text{Rule 1} \\
+				 &\rightarrow ExprLeftHi & \text{Rule 2} \\
+				 &\rightarrow ExprLeftHi \;\; Op1 \;\; Oprand & \text{Rule 3} \\
+				 &\rightarrow Oprand \;\; Op1 \;\; Oprand & \text{Rule 3} \\
+				 &\rightarrow \text{\bf ( } ExprRightMid \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 4} \\
+				 &\rightarrow \text{\bf ( } ExprLeftHi \;\; Op2 \;\; ExprRightMid \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 2} \\
+				 &\rightarrow \text{\bf ( } Oprand \;\; Op2 \;\; ExprRightMid \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 3} \\
+				 &\rightarrow \text{\bf ( } Ident \;\; Op2 \;\; ExprRightMid \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 4} \\
+				 &\rightarrow \text{\bf ( a} \;\; Op2 \;\; ExprRightMid \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 9} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; ExprRightMid \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 6} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; ExprLeftHi \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 2} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; Oprand \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 3} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; Int \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 4} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; 2 \text{ \bf ) } \;\; Op1 \;\; Oprand & \text{Rule 8} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; 2 \text{ \bf ) ?} \;\; Oprand & \text{Rule 5} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; 2 \text{ \bf ) ?} \;\; Ident & \text{Rule 4} \\
+				 &\rightarrow \text{\bf ( a \^\null} \;\; 2 \text{ \bf ) ? b} & \text{Rule 9} \\
+		\end{align*}
+		\item
+			\Tree[.Expr
+					[.ExprRightMid
+						[.ExprLeftHi
+							[.ExprLeftHi
+								[.Oprand
+									[ ( ]
+									[.ExprRightMid
+										[.ExprLeftHi
+											[.Oprand
+												[.Ident
+													[ a ]]]]
+										[.Op2
+											[ \text{\^\null} ]]
+										[.ExprRightMid
+											[.ExprLeftHi
+												[.Oprand
+													[.Int
+														[ 2 ]]]]]]
+									[ ) ]]]
+							[.Op1
+								[ ? ]]
+							[.Oprand
+								[.Ident
+									[ b ]]]]]]
+	\end{enumerate}
+\end{document}

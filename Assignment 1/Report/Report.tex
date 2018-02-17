@@ -1,0 +1,140 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1.75in,
+	left=1.25in,
+	right=1.25in
+]{geometry}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{pdfpages}
+\usepackage{amssymb}
+\usepackage{qtree}
+\newcommand\qlabelhook{\it}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+
+\def\sizeablebox[#1,#2,#3]{
+		\hbox to #2 {\framebox[#1]{#3}}%
+	}
+\def\qframesubtree{\setbox\treeboxone \hbox{\framebox[1\width]{\box\treeboxone}}}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\begin{titlepage}
+		\title{COMP332---Programming Languages \\[5pt]
+		Assignment One Report \vfill}
+		\author{Christian Nassif-Haynes -- 42510023}
+		\maketitle
+	\end{titlepage}
+	
+	\section{Introduction}
+	This document describes the implementation and testing of assignment one in COMP332. The aim of the assignment was write a program structure tree (PST)
+	builder for the Func332 functional programming language by using the Kiama library.\footnote{\url {https://code.google.com/p/kiama/}} A skeleton project and context-free grammar (CFG) was provided for which the PST builder and accompanying tests had to be implemented.
+	
+	The following sections discuss the design of the tree builder and the way in which the project was tested.
+	
+	\section{The Lexical Analyser}
+	The implementation and testing of the PST builder was reasonably straightforward as a CFG and language processing library were given.
+	\subsection{Design}
+	The CFG which was provides is as follows:
+	\begin{verbatim}
+		program : (exp ";")+.
+		
+		exp  : "let" idndef "=" exp "in" exp
+		     | exp0.
+		
+		exp0 : exp exp
+		     | exp "=" exp
+		     | exp "<" exp
+		     | exp "+" exp
+		     | exp "-" exp
+		     | exp "*" exp
+		     | exp "/" exp
+		     | "true"
+		     | "false"
+		     | idnuse
+		     | integer
+		     | "if" exp "then" exp "else" exp
+		     | "(" idndef ":" tipe ")" "=>" exp
+		     | "(" exp ")".
+		
+		tipe : "int"
+		     | "bool"
+		     | tipe "->" tipe
+		     | "(" tipe ")".
+	\end{verbatim}
+	This CFG is ambiguous and changes were required to allow for well-defined operator precedence and associativity. Specifically, it was required that the following constructs have precedence in the order listed:
+	\begin{enumerate}
+		\item Let, if and function.
+		\item Equal and less than.
+		\item Application.
+		\item Addition and subtraction.
+		\item Multiplication and division.
+		\item All other kinds of expressions.
+	\end{enumerate}
+	Additionally, it was required that the application binary operator and the arrow function type were right associative and that all other binary operators were left associative. Subsequently, the CFG was modified to account for these desiderata as follows:
+	\begin{verbatim}
+		program : (exp ";")+.
+		
+		exp   : "let" idndef "=" exp "in" exp
+		      | "if" exp "then" exp "else" exp
+		      | "(" idndef ":" tipe ")" "=>" exp
+		      | exp0.
+		
+		exp0  : exp0 "=" exp1
+		      | exp0 "<" exp1
+		      | exp1.
+		
+		exp1  : exp2 exp1
+		      | exp2.
+		
+		exp2  : exp2 "+" exp3
+		      | exp2 "-" exp3
+		      | exp3.
+		     
+		exp3  : exp3 "*" exp4
+		      | exp3 "/" exp4
+		      | exp4.
+		
+		exp4  : "true"
+		      | "false"
+		      | idnuse
+		      | integer
+		      | "(" exp ")".
+		
+		tipe  : tipe0 "->" tipe
+		      | tipe0.
+		      
+		tipe0 : "int"
+		      | "bool"
+		      | "(" tipe ")".
+	\end{verbatim}
+	Operator precedence has been specified in the modified CFG by forcing high precedence operators further down the parse tree. For example, as multiplication takes precedence over addition, \verb|exp3| (the production dealing with multiplication) is only mentioned in \verb|exp2| (which deals with addition).
+	
+	Left and right associative operators were specified by using left and right-recursive productions, respectively. The \verb|exp0| and \verb|tipe| are two such recursive productions.
+	
+	After the CFG was rewritten, what was left was to implement it. Implementation entailed further rewriting the CFG in Scala, augmenting productions with their corresponding PST node where necessary. Shown below for illustration is the \verb|exp0| production rewritten in Scala, augmented to infer the \verb|EqualExp| and \verb|LessExp| nodes:
+	\begin{verbatim}
+		lazy val exp0 : PackratParser[Expression] =
+		    (exp0 <~ "=") ~ exp1 ^^ { case a ~ b => EqualExp (a, b) } | 
+		    (exp0 <~ "<") ~ exp1 ^^ { case a ~ b => LessExp  (a, b) } |
+		    exp1
+	\end{verbatim}
+	
+	\subsection{Testing}
+	The included tests covered many cases. The additional tests focused on operator associativity and precedence as rewriting the given CFG to specify them seemed to be the crux of this assignment. As well as this, some such tests were omitted from the included test set.
+	
+	Selected additional tests are
+	\begin{itemize}
+		\item `* is left associative' and `/ is left associative' and;
+		\item `- has lower precedence than / (to right)' and `+ has lower precedence than / (to left)'.
+	\end{itemize}
+	Additionally, it was checked that a rudimentary program could be parsed correctly as well as that parsing a chain of functions (as is common in functional languages) succeeded.
+\end{document}

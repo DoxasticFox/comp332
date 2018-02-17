@@ -1,0 +1,9 @@
+[info] ParsingTests:
+[info] - parsing digits as a factor gives the correct tree
+[info] - parsing a non-integer as an integer gives an error
+[info] - parsing a simple expression produces the correct tree
+[info] - parsing an expression with associative operators produces the correct tree
+[info] - parsing a negative expression gives the correct tree
+[info] - parsing an expression with the subtraction operator produces the correct tree
+[info] - parsing a complex 'set' expression gives the correct tree
+[info] - parsing multiple statements gives a program

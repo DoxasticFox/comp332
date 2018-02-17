@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+\usepackage[
+	top=1in,
+	bottom=1.75in,
+	left=1.25in,
+	right=1.25in
+]{geometry}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{pdfpages}
+\usepackage{amssymb}
+\usepackage{qtree}
+\newcommand\qlabelhook{\it}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+
+\def\sizeablebox[#1,#2,#3]{
+		\hbox to #2 {\framebox[#1]{#3}}%
+	}
+\def\qframesubtree{\setbox\treeboxone \hbox{\framebox[1\width]{\box\treeboxone}}}
+
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\cleanlookdateon
+
+\begin{document}
+	\begin{titlepage}
+		\title{COMP332---Programming Languages \\[5pt]
+		Assignment Two Report \vfill}
+		\author{Christian Nassif-Haynes -- 42510023}
+		\maketitle
+	\end{titlepage}
+	
+	\section{Introduction}
+	This document describes the implementation and testing of assignment two in COMP332. The aim of the assignment was to extend the given program to implement semantic analysis (including name analysis) for the Func332 functional programming language by using the Kiama library.\footnote{\url {https://code.google.com/p/kiama/}}
+	
+	The following sections discuss the design of the analyser conceptually, it's implementation and the way in which the project was tested.
+	
+	\section{The Semantic Analyser}
+	\subsection{Design}
+	\subsubsection{Name Analysis}
+	The bulk of name analysis can be conceptualised by annotating each node in a program's syntax tree with a list of variables which are visible at that node. As, in Func332, the variables which are visible at a node depend on those visible at the parent, name analysis can be carried out recursively.
+	
+	A more complex feature, scoping rules, can be though of as partitioning a syntax tree into a subtree above a node and a subtree including and below it. The outer scope\footnote{Each of these scopes is referred to as an \textit{environment} in Kiama.} contains both subtrees, however the inner scope contains only the lower one.
+	
+	In Func332, function and let expressions have their own scope. In other words, the program's syntax tree is partitioned at these nodes. As well, variables in the inner scope hide those in the outer scope.
+	
+	\subsubsection{Type Analysis}
+	Func332 is statically and strongly typed, making type analysis comparatively straightforward; the type of an expression depends on its constituent expressions. This knowledge can be used to infer the type of an expression recursively. Additionally, the ``expected type'' of an expression (the type suggested by its context) can be inferred to aid Func332 programmers' debugging.
+	
+	\subsection{Implementation}
+	\subsubsection{Name Analysis}
+	Name analysis was primarily facilitated by a) using the \verb=define= function to make Kiama ``aware'' of variables and; b) using the \verb=enter= function to give variables the correct scope and implement variable hiding. It was not required to use \verb=leave= because in Func332 variables can only be defined in a nested scope, and only one variable can be defined at each scope level.
+	
+	\subsubsection{Type Analysis}
+	Type analysis is aided by Kiama's \verb=lookup= function, which finds the \verb=entity= referred to by a variable. From there, \verb=tipe= is applied recursively to determine each expression's data type.
+	
+	The \verb=tipe= and \verb=exptipe= functions are used by \verb=check= to ensure that the type of each expression matches up with the context of that expression.
+	
+	\subsection{Testing}
+	A fair number of type and name tests were devised. These included tests covering multiple cases where:
+	\begin{itemize}
+		\item The operators $+$, $-$, $\div$ and $\times$ were compatible with their operands.
+		\item If statements had boolean-valued conditions, and if- and else- bodies of matching type.
+		\item Let expressions had the correct type.
+		\item Functions were typed correctly.\footnote{Actually, this case wasn't well covered. Indeed, type analysis is not correctly implemented for function definitions whose argument types are a functions.}
+		\item Variables could not be used unless they were declared.
+		\item Variables had the correct visibility based on their scope.
+	\end{itemize}
+\end{document}

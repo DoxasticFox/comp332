@@ -1,0 +1,35 @@
+[debug] 
+[debug] Initial source changes: 
+[debug] 	removed:Set()
+[debug] 	added: Set(C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\NameTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\ParsingTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\SemanticTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\TypeTests.scala)
+[debug] 	modified: Set()
+[debug] Removed products: Set()
+[debug] Modified external sources: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated sources: Set(C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\NameTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\ParsingTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\SemanticTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\TypeTests.scala)
+[debug] 
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated sources: Set(C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\NameTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\ParsingTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\SemanticTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\TypeTests.scala)
+[debug] Recompiling all 4 sources: invalidated sources (4) exceeded 50.0% of all sources
+[info] Compiling 4 Scala sources to C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\target\scala-2.10\test-classes...
+[debug] Running cached compiler 41ccd8da, interfacing (CompilerInterface) with Scala compiler version 2.10.2
+[debug] Calling Scala compiler with arguments  (CompilerInterface):
+[debug] 	-deprecation
+[debug] 	-feature
+[debug] 	-unchecked
+[debug] 	-d
+[debug] 	C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\target\scala-2.10\test-classes
+[debug] 	-bootclasspath
+[debug] 	C:\Program Files\Java\jre7\lib\resources.jar;C:\Program Files\Java\jre7\lib\rt.jar;C:\Program Files\Java\jre7\lib\sunrsasign.jar;C:\Program Files\Java\jre7\lib\jsse.jar;C:\Program Files\Java\jre7\lib\jce.jar;C:\Program Files\Java\jre7\lib\charsets.jar;C:\Program Files\Java\jre7\lib\jfr.jar;C:\Program Files\Java\jre7\classes;C:\Users\Christian\.sbt\boot\scala-2.10.2\lib\scala-library.jar
+[debug] 	-classpath
+[debug] 	C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\target\scala-2.10\test-classes;C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\target\scala-2.10\classes;C:\Users\Christian\.ivy2\cache\com.googlecode.kiama\kiama_2.10\jars\kiama_2.10-1.5.0.jar;C:\Users\Christian\.ivy2\cache\org.bitbucket.inkytonik.dsinfo\dsinfo_2.10\jars\dsinfo_2.10-0.2.0.jar;C:\Users\Christian\.ivy2\cache\org.scala-lang\scala-reflect\jars\scala-reflect-2.10.1.jar;C:\Users\Christian\.ivy2\cache\org.bitbucket.inkytonik.dsprofile\dsprofile_2.10\jars\dsprofile_2.10-0.2.0.jar;C:\Users\Christian\.ivy2\cache\jline\jline\jars\jline-1.0.jar;C:\Users\Christian\.ivy2\cache\junit\junit\jars\junit-4.10.jar;C:\Users\Christian\.ivy2\cache\org.hamcrest\hamcrest-core\jars\hamcrest-core-1.1.jar;C:\Users\Christian\.ivy2\cache\org.scalatest\scalatest_2.10\jars\scalatest_2.10-1.9.1.jar;C:\Users\Christian\.ivy2\cache\org.scala-lang\scala-actors\jars\scala-actors-2.10.0.jar
+[debug] Scala compilation took 3.272976455 s
+[debug] Step 2 changed sources and immdediate dependencies:
+[debug] 	Set(C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\NameTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\ParsingTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\SemanticTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\TypeTests.scala)
+[debug] Non-trivial strongly connected components: 
+[debug] 	
+[debug] Step 2 invalidated sources:
+[debug] 	Set(C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\NameTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\ParsingTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\TypeTests.scala, C:\Users\Christian\Documents\Work\University\300 Level\Semester 2\COMP332\Mixed Week 7\comp332-week7\src\exp\SemanticTests.scala)

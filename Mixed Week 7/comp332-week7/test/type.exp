@@ -1,0 +1,19 @@
+decl a : integer
+decl b : string
+
+set a = 12
+set a = b
+set a = 1 + 3
+set a = "a string"
+set a = x
+
+set b = 12
+set b = a
+set b = 1 + 3
+set b = "a string"
+
+const c : integer = 1
+const d : integer = "hello"
+const e : string = "hi"
+const f : string = 42
+const g : integer = y
